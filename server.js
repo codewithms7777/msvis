@@ -16,6 +16,11 @@ app.use(bodyParser.json());
 const API_KEY = "twwjclqzJAs8FDWHu5WjB0asS82fdv8s"; // Replace with your valid Mistral API key
 
 app.post("/chat", async (req, res) => {
+    console.log("Received request:", req.body); // Debug log
+
+    if (!req.body.message) {
+        return res.status(400).json({ error: "Message is required" });
+    }
     const userMessage = req.body.message;
     try {
         const response = await fetch("https://api.mistral.ai/v1/chat/completions", {
