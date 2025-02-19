@@ -31,12 +31,13 @@ app.post("/chat", async (req, res) => {
         });
 
         const data = await response.json();
-        if (data.choices) {
-            res.json({ content: data.choices[0].message.content });
-        } else {
-            console.error("Mistral API Error:", data);
-            res.status(500).json({ content: "API error" });
-        }
+        if (data.choices && data.choices[0].message.content) {
+    res.json({ content: data.choices[0].message.content });
+} else {
+    console.error("Invalid API response:", data);
+    res.status(500).json({ content: "No valid response from AI" });
+}
+
     } catch (error) {
         console.error("Server Error:", error);
         res.status(500).json({ content: "Server error" });
