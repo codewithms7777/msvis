@@ -1,10 +1,11 @@
-const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const fetch = require("node-fetch");
+
+import fetch from 'node-fetch';
+import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: "*" }));
 app.use(bodyParser.json());
 
 const API_KEY = "twwjclqzJAs8FDWHu5WjB0asS82fdv8s"; // Replace with your valid Mistral API key
